@@ -1,7 +1,5 @@
 // variables
 
-var message = '';
-var randomQuote;
 var randomNumber;
 var quotes;
 var div;
@@ -72,7 +70,8 @@ function getRandomQuote () {
 // printQuote function creates the HTML string to be printed out and also calls for the properties if they are contained in the quote object.
 
 function printQuote () {
-  randomQuote = getRandomQuote();
+  var randomQuote = getRandomQuote();
+  var message = '';
   message += '<p class="quote">' + randomQuote.quote + '</p>';
   message += '<p class="source">' + randomQuote.source;
   if (randomQuote.citation) {

@@ -3,6 +3,11 @@
 var randomNumber;
 var quotes;
 var div;
+var color;
+var blue;
+var green;
+var red;
+var myInterval = setInterval(printQuote, 20000);
 
 // quotes array being defined
 
@@ -67,9 +72,20 @@ function getRandomQuote () {
   return quotes[randomNumber];
 }
 
+// backgroundCol function that changes background color
+
+function backgroundCol () {
+  blue = Math.floor(Math.random() * 256);
+  green = Math.floor(Math.random() * 256);
+  red = Math.floor(Math.random() * 256);
+  color = "rgb(" + blue + "," + green + "," + red + ")";
+  document.body.style.backgroundColor = color;
+}
+
 // printQuote function creates the HTML string to be printed out and also calls for the properties if they are contained in the quote object.
 
 function printQuote () {
+  backgroundCol();
   var randomQuote = getRandomQuote();
   var message = '';
   message += '<p class="quote">' + randomQuote.quote + '</p>';
@@ -81,7 +97,10 @@ function printQuote () {
     message += '<span class="year">' + randomQuote.year + '</span>';
   }
   message += '</p>';
-  document.getElementById("quote-box").innerHTML = message;
+  div = document.getElementById('quote-box');
+  div.innerHTML = message;
+  clearInterval(myInterval);
+  myInterval = setInterval(printQuote, 20000);
 }
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);

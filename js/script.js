@@ -1,6 +1,5 @@
 // variables
 
-var randomNumber;
 var quotes;
 var div;
 var color;
@@ -45,7 +44,7 @@ quotes = [
     tag: 'Psychology'
   },
   {
-    quote: 'It take a long time to become young.',
+    quote: 'It takes a long time to become young.',
     source: 'Pablo Picasso',
     tag: 'Philosophy'
   },
@@ -62,7 +61,7 @@ quotes = [
     tag: 'Music'
   },
   {
-    quote: 'Catch a throatful from the fire vocal, Ash and molten glass like Eyjafjallajökull.',
+    quote: 'Catch a throatful from the fire vocal, With ash and molten glass like Eyjafjallajökull.',
     source: 'JJ DOOM',
     citation: 'GUV’NOR',
     tag: 'Music'
@@ -89,26 +88,39 @@ quotes = [
     citation: 'The Eric Andre Show'
   },
   {
-    quote: 'See you, space cowboy...',
-    source: 'Cowboy Bebop'
-  },
-  {
     quote: 'I’d like to point out to people the divine in a musical language that transcends words. I want to speak to their souls.',
     source: 'John Coltrane',
     tag: 'Music'
   }
-]
+];
 
-// getRandomQuote function creates a random integer in range of the length of the 'quotes' array to return a random quote object from the array.
+/*
+ getRandomQuote function creates a random integer in range of the length of the 'quotes' array to return a random quote object from the array.
+ Function does not repeat and only does so once all quote objects are used.
+ Source: https://stackoverflow.com/questions/17891173/how-to-efficiently-randomly-select-array-item-without-repeats. User @maerics is the author of the code.
+ */
 
 function getRandomQuote () {
-  for (i = quotes.length; i--;) {
-    var random = quotes.splice(Math.floor(Math.random() * i), 1)[0];
-    return random;
-  };
+  function randomNoRepeats (array) {
+    var copy = array.slice(0);
+    return function () {
+      if (copy.length < 1) {
+        copy = array.slice(0);
+      }
+      var index = Math.floor(Math.random() * copy.length);
+      var item = copy[index];
+      copy.splice(index, 1);
+      return item;
+    };
+  }
+  var quote = randomNoRepeats(quotes);
+  return quote();
 }
 
-// backgroundCol function that changes background color. Source: https://www.w3resource.com/javascript-exercises/javascript-math-exercise-40.php
+/*
+ backgroundCol function that changes background color.
+ Source: https://www.w3resource.com/javascript-exercises/javascript-math-exercise-40.php
+*/
 
 function backgroundCol () {
   blue = Math.floor(Math.random() * 256);
@@ -119,9 +131,11 @@ function backgroundCol () {
 }
 
 /*
-printQuote function creates the HTML string to be printed out and also calls for the properties if they are contained in the quote object.
-Function includes setInterval() & clearInterval() functions to auto-refresh the quote after 20 seconds of being idle. Source: https://www.w3schools.com/jsref/met_win_setinterval.asp
-Function also generates a change in background color when called.
+ printQuote function creates the HTML string to be printed out and also calls for the properties if they are contained in the quote object.
+ Function includes setInterval() & clearInterval() functions to auto-refresh the quote after 20 seconds of being idle.
+ Sources: https://www.w3schools.com/jsref/met_win_setinterval.asp
+          https://app.slack.com/client/TBPQFGEAH/CBPEL1X8U/thread/CBPEL1X8U-1570358397.399900 -Emma W provided the solution for not overlapping time stamps
+ Function also generates a change in background color when called.
 */
 
 function printQuote () {

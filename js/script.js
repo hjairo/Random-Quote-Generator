@@ -86,11 +86,6 @@ quotes = [
     tag: 'Motivational'
   },
   {
-    quote: 'Legalize Ranch.',
-    source: 'Eric Andre',
-    citation: 'The Eric Andre Show'
-  },
-  {
     quote: 'I’d like to point out to people the divine in a musical language that transcends words. I want to speak to their souls.',
     source: 'John Coltrane',
     tag: 'Music'

@@ -103,6 +103,7 @@ quotes = [
  Source: https://teamtreehouse.com/community/cant-get-random-quote-generator-to-run-all-quotes-before-repeating-the-same-quote.
  Credit to Steven Parker.
 */
+
 function getRandomQuote () {
   if (quotes.length === 0) {
     quotes = viewedQuotes.splice(0, viewedQuotes.length);

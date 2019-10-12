@@ -1,12 +1,15 @@
 // variables
 
 var quotes;
-var div;
 var color;
 var blue;
 var green;
 var red;
+var randNum;
+var randomQuote;
 var myInterval = setInterval(printQuote, 20000);
+var viewedQuotes = [];
+var splicedQuote = [];
 
 // quotes array being defined
 
@@ -92,29 +95,22 @@ quotes = [
     source: 'John Coltrane',
     tag: 'Music'
   }
-];
+]
 
 /*
  getRandomQuote function creates a random integer in range of the length of the 'quotes' array to return a random quote object from the array.
- Function does not repeat and only does so once all quote objects are used.
- Source: https://stackoverflow.com/questions/17891173/how-to-efficiently-randomly-select-array-item-without-repeats. User @maerics is the author of the code.
- */
-
+ Function does not repeat until all quote objects are used.
+ Source: https://teamtreehouse.com/community/cant-get-random-quote-generator-to-run-all-quotes-before-repeating-the-same-quote.
+ Credit to Steven Parker.
+*/
 function getRandomQuote () {
-  function randomNoRepeats (array) {
-    var copy = array.slice(0);
-    return function () {
-      if (copy.length < 1) {
-        copy = array.slice(0);
-      }
-      var index = Math.floor(Math.random() * copy.length);
-      var item = copy[index];
-      copy.splice(index, 1);
-      return item;
-    };
+  if (quotes.length === 0) {
+    quotes = viewedQuotes.splice(0, viewedQuotes.length);
   }
-  var quote = randomNoRepeats(quotes);
-  return quote();
+  randNum = Math.floor(Math.random() * quotes.length);
+  splicedQuote = quotes.splice(randNum, 1)[0];
+  viewedQuotes.push(splicedQuote);
+  return splicedQuote;
 }
 
 /*
@@ -131,16 +127,16 @@ function backgroundCol () {
 }
 
 /*
- printQuote function creates the HTML string to be printed out and also calls for the properties if they are contained in the quote object.
- Function includes setInterval() & clearInterval() functions to auto-refresh the quote after 20 seconds of being idle.
- Sources: https://www.w3schools.com/jsref/met_win_setinterval.asp
-          https://app.slack.com/client/TBPQFGEAH/CBPEL1X8U/thread/CBPEL1X8U-1570358397.399900 -Emma W provided the solution for not overlapping time stamps
- Function also generates a change in background color when called.
+printQuote function creates the HTML string to be printed out and also calls for the properties if they are contained in the quote object.
+Function includes setInterval() & clearInterval() functions to auto-refresh the quote after 20 seconds of being idle.
+Source: https://www.w3schools.com/jsref/met_win_setinterval.asp
+        https://app.slack.com/client/TBPQFGEAH/CBPEL1X8U/thread/CBPEL1X8U-1570358397.399900 -Emma W provided the solution for not overlapping time stamps
+Function also generates a change in background color when called.
 */
 
 function printQuote () {
   backgroundCol();
-  var randomQuote = getRandomQuote();
+  randomQuote = getRandomQuote();
   var message = '';
   message += '<p class="quote" id="quote">' + randomQuote.quote + '</p>';
   message += '<p class="source">' + randomQuote.source;
@@ -154,8 +150,7 @@ function printQuote () {
     message += '<span class="tag">, ' + randomQuote.tag + '</span>';
   }
   message += '</p>';
-  div = document.getElementById('quote-box');
-  div.innerHTML = message;
+  document.getElementById('quote-box').innerHTML = message;
   clearInterval(myInterval);
   myInterval = setInterval(printQuote, 20000);
 }

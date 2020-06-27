@@ -95,8 +95,6 @@ quotes = [
 /*
  getRandomQuote function creates a random integer in range of the length of the 'quotes' array to return a random quote object from the array.
  Function does not repeat until all quote objects are used.
- Source: https://teamtreehouse.com/community/cant-get-random-quote-generator-to-run-all-quotes-before-repeating-the-same-quote.
- Credit to Steven Parker.
 */
 
 function getRandomQuote () {
@@ -111,7 +109,6 @@ function getRandomQuote () {
 
 /*
  backgroundCol function that changes background color.
- Source: https://www.w3resource.com/javascript-exercises/javascript-math-exercise-40.php
 */
 
 function backgroundCol () {
@@ -125,8 +122,6 @@ function backgroundCol () {
 /*
 printQuote function creates the HTML string to be printed out and also calls for the properties if they are contained in the quote object.
 Function includes setInterval() & clearInterval() functions to auto-refresh the quote after 20 seconds of being idle.
-Source: https://www.w3schools.com/jsref/met_win_setinterval.asp
-        https://app.slack.com/client/TBPQFGEAH/CBPEL1X8U/thread/CBPEL1X8U-1570358397.399900 -Emma W provided the solution for not overlapping time stamps
 Function also generates a change in background color when called.
 */
 

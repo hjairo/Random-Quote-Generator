@@ -93,7 +93,7 @@ quotes = [
 ]
 
 /*
- getRandomQuote function creates a random integer in range of the length of the 'quotes' array to return a random quote object from the array.
+  function creates a random integer in range of the length of the 'quotes' array to return a random quote object from the array.
  Function does not repeat until all quote objects are used.
 */
 
@@ -108,7 +108,7 @@ function getRandomQuote () {
 }
 
 /*
- backgroundCol function that changes background color.
+ function that changes background color.
 */
 
 function backgroundCol () {
@@ -120,7 +120,7 @@ function backgroundCol () {
 }
 
 /*
-printQuote function creates the HTML string to be printed out and also calls for the properties if they are contained in the quote object.
+function creates the HTML string to be printed out and also calls for the properties if they are contained in the quote object.
 Function includes setInterval() & clearInterval() functions to auto-refresh the quote after 20 seconds of being idle.
 Function also generates a change in background color when called.
 */
